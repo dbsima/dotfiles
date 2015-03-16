@@ -165,3 +165,27 @@ if [ "$OS" == "osx" ]; then
 elif [ "$OS" == "ubuntu" ]; then
     alias o="xdg-open"
 fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Silver search only in specific file types
+
+alias agpy="ag -G py"¬
+alias agxml="ag -G xml"¬
+alias agcss="ag -G css"¬
+alias agjs="ag -G js"¬
+alias aghtml="ag -G html"¬
+alias agjava="ag -G java"¬
+alias agcsv="ag -G csv"¬
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Gymglish DB access¬
+
+alias mywork="mysql -h 127.0.0.1 -u retd --password=pass1 mywork"¬
+alias mymywork="mysql -h 127.0.0.1 -u retd --password=pass1 mywork"¬
+alias mycont="mysql -h 127.0.0.1 -u retd --password=pass1 a9content4test"¬
+alias pgcont="PGPASSWORD=pass1 psql -h 127.0.0.1 -U retd a9content4test"¬
+alias myo1="mysql -h o1 -u a9 a9prod"¬
+alias myv1="mysql -h v1 -u a9 a9prod"¬
+alias myv1dump="mysqldump -h v1 -u a9 a9prod"

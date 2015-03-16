@@ -15,7 +15,6 @@ declare -a APT_PACKAGES=(
     #"ubuntu-restricted-extras"
 
     # Other
-    "atom"
     "chromium-browser"
     "curl"
     "firefox-trunk"
@@ -24,9 +23,7 @@ declare -a APT_PACKAGES=(
     "git"
     "google-chrome-unstable"
     "imagemagick"
-    "nautilus-dropbox"
-    "opera"
-    "opera-next"
+    "silversearcher-ag"
     "transmission"
     "vim-gnome"
     "virtualbox"
