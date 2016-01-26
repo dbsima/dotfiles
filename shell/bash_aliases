@@ -178,4 +178,6 @@ alias aghtml="ag -G html"¬
 alias agjava="ag -G java"¬
 alias agcsv="ag -G csv"¬
 
-
+# Find
+alias fhere="find . -iname"
+alias py="python"
