@@ -506,7 +506,7 @@ if filereadable(glob('~/.vimrc.local'))
 endif
 
 
-hi ExtraWhitespace ctermbg=red guibg=redi
+hi ExtraWhitespace ctermbg=red guibg=red
 au BufEnter,BufCreate,BufRead,WinEnter * call matchadd('ExtraWhitespace', '\s\+$', -1)
 
 " BEGIN status bar
