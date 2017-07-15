@@ -42,6 +42,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'git://github.com/PyCQA/pyflakes.git'
     Plugin 'git://github.com/leafgarland/typescript-vim.git'
     Plugin 'junegunn/fzf'
+    Plugin 'posva/vim-vue'
 
 call vundle#end()
 
