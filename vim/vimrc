@@ -43,6 +43,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'git://github.com/leafgarland/typescript-vim.git'
     Plugin 'junegunn/fzf'
     Plugin 'posva/vim-vue'
+    Plugin 'nvie/vim-flake8'
 
 call vundle#end()
 
@@ -90,7 +91,7 @@ set cpoptions+=$               " When making a change, don't
                                " put a `$` sign at the end of
                                " the changed text
 
-set colorcolumn=73             " Highlight certain column(s)
+set colorcolumn=79             " Highlight certain column(s)
 set cursorline                 " Highlight the current line
 set directory=~/.vim/swaps     " Set directory for swap files
 set encoding=utf-8 nobomb      " Use UTF-8 without BOM
@@ -418,21 +419,24 @@ let g:neocomplcache_enable_at_startup=1
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Syntastic
+let g:flake8_cmd="/home/sima/venv-vim/bin/flake8"
 
 " Inform Syntastic which checkers to use based on file types
 " https://github.com/scrooloose/syntastic#3-faq
 let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
 let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
-let g:syntastic_python_checkers = ['pyflakes', 'flake8']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_less_checkers = ['lessc']
 let g:syntastic_typescript_checkers = ['eslint', 'tslint']
 let g:syntastic_xml_checkers = [ 'xmllint' ]
 
+let g:syntastic_python_flake8_post_args='--ignore=E402'
+
 " Disable syntax checking by default
 let g:syntastic_mode_map = {
     \ 'active_filetypes': ['python', 'html', 'javascript', 'css', 'less', 'typescript'],
-    \ 'mode': 'passive',
+    \ 'mode': 'active',
     \ 'passive_filetypes': []
 \}
 
@@ -514,56 +518,56 @@ au BufEnter,BufCreate,BufRead,WinEnter * call matchadd('ExtraWhitespace', '\s\+$
 " HOW TO SHOW status bar on 2 lines:
 if version >= 700
     :set laststatus=2
-    
+
     function! GetCurrentPythonStringForStatusBar()
         " TODO: support: if __name__ == '__main__':
-    
+
         " Define the style to display the class name and function name
         let classHi = '%#statusbar_class#'
         let functionHi = '%#statusbar_function#'
         let punctuationHi = '%#perso1#'
-    
+
         " Search the first class method definition before the current position
         let classFunctionLineNumber = search('^    def', 'bncW')
-    
+
         " Search the first function definition before the current position
         let simpleFunctionLineNumber = search('^def', 'bncW')
-    
+
         " Search the first class definition before the current position
         let classLineNumber = search('^class', 'bncW')
-    
-    
+
+
         let className = classHi.substitute(getline(classLineNumber), '^class \([^(: ]*\).*', '\1', '')
-    
+
         if classFunctionLineNumber < classLineNumber && simpleFunctionLineNumber < classLineNumber
             " We have found in first a class definition so we only return it
             return className
         endif
-    
+
         if classFunctionLineNumber < simpleFunctionLineNumber
             " the function definition is found before the a method so we only return the function name
             return functionHi.substitute(getline(simpleFunctionLineNumber), '^[ ]*def \([^( ]*\).*', '\1', '')
         endif
-    
+
         " return the class and the function name
         return className.punctuationHi.'.'.functionHi.substitute(getline(classFunctionLineNumber), '^[ ]*def \([^( ]*\).*', '\1', '')
-    
+
     endfunction
-    
-    
+
+
     function! GetMainStatusBar()
         return '%#perso1#%F '.GetCurrentPythonStringForStatusBar().' %#perso1#%=buffer %0n  %4l/%-4L %3p%% %3c'
     endfunction
-    
-    
+
+
     function! GetSecondaryStatusBar()
         return '%#SpecialKey#%{getcwd()}      %F'
     endfunction
-    
-    
+
+
     let s:statusline={0: '%!GetMainStatusBar()', 1:'%!GetSecondaryStatusBar()' }
     let s:currentStatusLine = 1
-    
+
     function! ToggleStatusLine()
         let s:currentStatusLine = s:currentStatusLine + 1
         if (s:currentStatusLine > 1)
@@ -571,7 +575,7 @@ if version >= 700
         endif
         let &statusline=s:statusline[s:currentStatusLine]
     endfunction
-    
+
     call ToggleStatusLine() "Init
     map <silent><C-space> :call ToggleStatusLine()<CR>
 endif
