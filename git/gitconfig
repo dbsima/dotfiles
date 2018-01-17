@@ -37,7 +37,10 @@
 
     # Commit all changes
     ca = !git add -A && git commit -av
+
     cp = cherry-pick
+    co = checkout
+    cm = commit
 
     # Switch to a branch, creating it if necessary
     go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
