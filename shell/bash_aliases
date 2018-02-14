@@ -169,7 +169,6 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Silver search only in specific file types
-
 alias agpy="ag -G py"¬
 alias agxml="ag -G xml"¬
 alias agcss="ag -G css"¬
@@ -181,3 +180,7 @@ alias agcsv="ag -G csv"¬
 # Find
 alias fhere="find . -iname"
 alias py="python"
+alias py3="python3"
+
+# Mac OS - review board
+alias rb="rbt post --disable-ssl-verification"
