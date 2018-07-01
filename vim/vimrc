@@ -23,7 +23,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'ap/vim-css-color'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'godlygeek/tabular'
-    Plugin 'mattn/emmet-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
     Plugin 'scrooloose/nerdtree'
@@ -298,12 +297,6 @@ endif
 
 " Use a different mapleader (default is '\')
 let mapleader = ','
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Redefine trigger key for Emmet
-" http://docs.emmet.io/cheat-sheet/
-let g:user_emmet_leader_key='<C-E>'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
