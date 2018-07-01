@@ -67,6 +67,7 @@
 
     rebc = rebase --continue
     reba = rebase --abort
+    rebp = rebase --preserve-merges origin/master
 
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
@@ -83,6 +84,10 @@
 
     # Praise instead of blamming
     praise = blame
+
+    # SVN
+    spull = svn rebase
+    spush = svn dcommit
 
 [apply]
 
