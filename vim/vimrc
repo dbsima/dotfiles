@@ -39,8 +39,8 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'git://github.com/PyCQA/pyflakes.git'
     Plugin 'git://github.com/leafgarland/typescript-vim.git'
     Plugin 'junegunn/fzf'
+    Plugin 'junegunn/fzf.vim'
     Plugin 'nvie/vim-flake8'
-
 call vundle#end()
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -581,3 +581,6 @@ set rtp+=~/.fzf
 
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let $FZF_DEFAULT_OPTS = '--no-mouse'
+
+set tags=tags
+set path=.
