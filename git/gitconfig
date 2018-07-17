@@ -35,12 +35,15 @@
     # Clone a repository including all submodules
     c = clone --recursive
 
-    # Commit all changes
-    ca = !git add -A && git commit -av
-
     cp = cherry-pick
     co = checkout
+
+    # Commit all changes
+    ca = !git add -A && git commit -av
+    # Shortcut for commit
     cm = commit
+    # Amend the currently staged files to the latest commit
+    am = commit --amend --reuse-message=HEAD
 
     # Switch to a branch, creating it if necessary
     go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -53,25 +56,18 @@
     # See Which Branches You Recently Worked On
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
-    # Amend the currently staged files to the latest commit
-    am = commit --amend --reuse-message=HEAD
-
-    # Remind Yourself What You’ve Been Up To
-    recap = log --all --oneline --no-merges --author=bogdan@gymglish.com
-
     # Interactive rebase with the given number of latest commits
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
     # Rebase with origin/master
     rom = rebase origin/master
-
-    rebc = rebase --continue
-    reba = rebase --abort
-    rebp = rebase --preserve-merges origin/master
+    rc = rebase --continue
+    ra = rebase --abort
+    rp = rebase --preserve-merges origin/master
 
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    dm = "!git branch --merged | egrep -v '(^\\*|master)' | xargs -n 1 git branch -d"
 
     # List contributors with number of commits
     contributors = shortlog --summary --numbered --no-merges
@@ -81,6 +77,8 @@
 
     # Today’s Work
     today = log --since=00:00:00 --all --no-merges --oneline --author=bogdan@gymglish.com
+    # Remind Yourself What You’ve Been Up To
+    recap = log --all --oneline --no-merges --author=bogdan@gymglish.com
 
     # Praise instead of blamming
     praise = blame
