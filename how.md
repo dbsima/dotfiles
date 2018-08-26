@@ -21,6 +21,12 @@
 .. displaying indent levels
 ``:IndentGuidesToggle``
 
+.. Add "'" at the begining of each line
+``:s/^/'/g``
+
+.. Add "'," at the ending of each line
+``:s/$/\',/g``
+
 ## VIM - CTAGS
 .. go to definition
 ``CTRL + ]``
