@@ -6,12 +6,12 @@
     # View abbreviated SHA, description, and history graph of the latest 20 commits
     l = log --pretty=oneline --graph --abbrev-commit
     lns = log --pretty=oneline --graph --abbrev-commit --name-status
-    sns = show --name-status
-    sh = show --color-words='\\w'
     lfile = log -n 5 --
-
     # View Complex Logs
     graph = log --graph --all --decorate --stat --date=iso
+
+    sns = show --name-status
+    sh = show --color-words='\\w'
 
     # View the current working tree status using the short format
     s = status -s
@@ -82,6 +82,8 @@
 
     # Praise instead of blamming
     praise = blame
+
+    fetch = fetch --prune
 
     # SVN
     spull = svn rebase
