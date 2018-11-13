@@ -40,6 +40,9 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
     Plugin 'nvie/vim-flake8'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'easymotion/vim-easymotion'
+    Plugin 'mileszs/ack.vim'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -586,6 +589,18 @@ set rtp+=~/.fzf
 
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let $FZF_DEFAULT_OPTS = '--no-mouse'
+
+" Ignore ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+" ack.vim
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
 
 set tags=tags
 set path=.
