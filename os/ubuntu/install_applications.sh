@@ -15,21 +15,12 @@ declare -a APT_PACKAGES=(
     #"ubuntu-restricted-extras"
 
     # Other
-    "chromium-browser"
     "curl"
-    "firefox-trunk"
-    "flashplugin-installer"
-    "gimp"
     "git"
-    "google-chrome-unstable"
     "imagemagick"
     "silversearcher-ag"
-    "transmission"
     "vim-gnome"
-    "virtualbox"
-    "vlc"
     "xclip"
-    "zopfli"
 
 )
 
