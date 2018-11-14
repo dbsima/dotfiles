@@ -241,28 +241,12 @@ if has('autocmd')
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    " Automatically reload the `~/.vimrc` and `~/.gvimrc`
-    " files whenever their content is changed.
-
-    augroup auto_reload_vim_configs
-        autocmd!
-        autocmd BufWritePost vimrc source $MYVIMRC
-        if has('gui_running')
-            autocmd BufWritePost gvimrc source $MYGVIMRC
-        endif
-    augroup END
-
-    " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     " Automatically reload the configurations from the
     " `~/.vimrc` and `~/.gvimrc` files whenever they are changed
 
     augroup auto_reload_vim_configs
         autocmd!
         autocmd BufWritePost vimrc source $MYVIMRC
-        if has('gui_running')
-            autocmd BufWritePost gvimrc source $MYGVIMRC
-        endif
     augroup END
 
     " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -388,6 +372,9 @@ map <leader>W :w !sudo tee %<CR>
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=13  guibg=#d33682
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237 guibg=#073642
+
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
