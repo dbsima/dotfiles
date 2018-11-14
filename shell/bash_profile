@@ -22,6 +22,8 @@ enable_programmable_completion() {
     elif [ "$OS" == "ubuntu" ]; then
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
             source /etc/bash_completion
+        elif [ -f /etc/bash_completion.d/git ] && ! shopt -oq posix; then
+            source /etc/bash_completion.d/git
         fi
     fi
 
