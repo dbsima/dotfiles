@@ -373,9 +373,6 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=13  guibg=#d33682
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237 guibg=#073642
 
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
-
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " NeoComplCache
@@ -580,9 +577,10 @@ let $FZF_DEFAULT_OPTS = '--no-mouse'
 " Ignore ctrlp
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|staticweb$\|a9npm$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$\|.pdf$' }
 
 " ack.vim
 if executable('ag')
@@ -590,7 +588,7 @@ if executable('ag')
 endif
 
 " ale
-let g:ale_python_flake8_executable = '/opt/rh/python27/root/usr/bin/python'
+let g:ale_linters = {'python': ['pyflakes', 'autopep8']}
 
 set tags=tags
 set path=.
