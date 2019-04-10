@@ -1,6 +1,8 @@
 [user]
 	email = bogdan@gymglish.com
 	name = Bogdan Sima
+[credential]
+    helper = cache --timeout 2592000
 [alias]
     l = log --pretty=oneline --graph --abbrev-commit
     la = log --pretty=oneline --graph --abbrev-commit --all

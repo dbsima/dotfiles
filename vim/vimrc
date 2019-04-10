@@ -19,7 +19,7 @@ call vundle#begin('~/.vim/plugins')
     " Let Vundle manage Vundle (this is important!)
     Plugin 'gmarik/Vundle.vim'
 
-    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'vim-scripts/peaksea'
     Plugin 'ap/vim-css-color'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'godlygeek/tabular'
@@ -43,6 +43,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'easymotion/vim-easymotion'
     Plugin 'mileszs/ack.vim'
+    Plugin 'airblade/vim-gitgutter'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -61,11 +62,8 @@ endif
 
 set t_Co=256                   " Enable full-color support
 
-if has('gui_running')          " ┐
-    colorscheme solarized      " │
-else                           " │ Use custom color scheme
-    colorscheme xoria256       " │
-endif                          " ┘
+colorscheme xoria256
+" colorscheme peaksea
 
 set autoindent                 " Copy indent to the new line
 
@@ -574,21 +572,33 @@ set rtp+=~/.fzf
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let $FZF_DEFAULT_OPTS = '--no-mouse'
 
-" Ignore ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|staticweb$\|a9npm$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$\|.pdf$' }
+" Ignore files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 " ack.vim
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 
-" ale
-let g:ale_linters = {'python': ['pyflakes', 'autopep8']}
+" ALE
+let g:ale_linters = {
+\   'python': ['pyflakes', 'pycodestyle'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['autopep8'],
+\}
+
+" Only run linting when saving the file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+
+" NERD
+let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden=0
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeWinSize=35
 
 set tags=tags
 set path=.
