@@ -583,12 +583,16 @@ endif
 
 " ALE
 let g:ale_linters = {
-\   'python': ['pyflakes', 'pycodestyle'],
+\   'python': ['pyflakes', 'pycodestyle', 'pylint'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8'],
 \}
+let g:ale_python_pylint_executable = '/home/sima/venvs/a9engine/bin/pylint'
+let g:ale_python_pylint_options = '--py3k'
+" let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
+let g:ale_python_pylint_use_global=1
 
 " Only run linting when saving the file
 let g:ale_lint_on_text_changed = 'never'
