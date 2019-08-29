@@ -63,7 +63,7 @@ endif
 set t_Co=256                   " Enable full-color support
 
 colorscheme xoria256
-" colorscheme peaksea
+"colorscheme peaksea
 
 set autoindent                 " Copy indent to the new line
 
