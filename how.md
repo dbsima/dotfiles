@@ -57,6 +57,9 @@
 .. to erase to the left until the first whitespace
 ``CTRL + k``
 
+.. to kill process using port 5000
+``kill -9 $(lsof -t -i:5000)``
+
 # iTerm
 
 .. navigate between panes
