@@ -52,15 +52,17 @@
     # Interactive rebase with the given number of latest commits
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-    # Rebase with origin/master
-    rom = rebase origin/master
+    # Rebase
+    rom = rebase --preserve-merges origin/master
+    rod = rebase --preserve-merges origin/dev
+    ros = rebase --preserve-merges origin/staging
+
     rc = rebase --continue
     ra = rebase --abort
-    rp = rebase --preserve-merges origin/master
 
-    # Remove branches that have already been merged with master
+    # Remove branches that have already been merged with master (except master)
     # a.k.a. ‘delete merged’
-    dm = "!git branch --merged | egrep -v '(^\\*|master)' | xargs -n 1 git branch -d"
+    dm = "!git branch --merged | egrep -v '(^\\*|master|dev|staging)' | xargs -n 1 git branch -d"
 
     # List contributors with number of commits
     contributors = shortlog --summary --numbered --no-merges
