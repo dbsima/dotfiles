@@ -17,6 +17,9 @@
     dom = diff origin/master
     domns = diff origin/master --name-status
 
+    dod = diff origin/dev
+    dodns = diff origin/dev --name-status
+
     # Pull in remote changes for the current repository and all its submodules
     pl = !"git pull"
 
