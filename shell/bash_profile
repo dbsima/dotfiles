@@ -98,6 +98,8 @@ unset -f get_os
 unset -f main
 unset -f source_bash_files
 
+source ~/.bashrc
+
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)
 clear
