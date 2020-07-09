@@ -14,6 +14,8 @@ main() {
         ./ubuntu/install_applications.sh
     fi
 
+    git clone https://github.com/bigH/git-fuzzy.git
+
 }
 
 main
