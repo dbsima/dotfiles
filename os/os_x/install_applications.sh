@@ -9,32 +9,24 @@ declare -a HOMEBREW_FORMULAE=(
     "bash-completion"
     "caskroom/cask/brew-cask"
     "git"
-    "imagemagick --with-webp"
     "vim --override-system-vi"
-    "macvim"
     "the_silver_searcher"
-    "bat"
     "ncdu"
-    "noti"
+    "fzf"
 )
 
 # Homebrew Casks
 # https://github.com/caskroom/homebrew-cask
 
 declare -a HOMEBREW_CASKS=(
-  "dropbox"
+  "google-chrome"
   "firefox"
-  "libreoffice"
-  "imageoptim"
-  "spectacle"
-  "the-unarchiver"
 )
 
 # Homebrew Alternate Casks
 # https://github.com/caskroom/homebrew-versions
 
 declare -a HOMEBREW_ALTERNATE_CASKS=(
-    "firefox-nightly"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
