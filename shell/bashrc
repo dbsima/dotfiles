@@ -17,3 +17,5 @@ function mv() {
   read -ei "$1" newfilename
   command mv -v -- "$1" "$newfilename"
 }
+
+export PATH="$HOME/git-fuzzy/bin:$PATH"
