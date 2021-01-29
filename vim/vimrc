@@ -90,7 +90,7 @@ set cpoptions+=$               " When making a change, don't
                                " put a `$` sign at the end of
                                " the changed text
 
-set colorcolumn=79             " Highlight certain column(s)
+set colorcolumn=120            " Highlight certain column(s)
 set cursorline                 " Highlight the current line
 set directory=~/.vim/swaps     " Set directory for swap files
 set encoding=utf-8 nobomb      " Use UTF-8 without BOM
@@ -150,6 +150,7 @@ set expandtab                  " ┘
 set ttyfast                    " Enable fast terminal connection
 set undodir=~/.vim/undos       " Set directory for undo files
 set undofile                   " Automatically save undo history
+
 set virtualedit=all            " Allow cursor to be anywhere
 
 set visualbell                 " ┐
