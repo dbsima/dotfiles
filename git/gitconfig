@@ -7,6 +7,8 @@
     l = log --pretty=oneline --graph --abbrev-commit
     la = log --pretty=oneline --graph --abbrev-commit --all
     lns = log --pretty=oneline --graph --abbrev-commit --name-status
+    lg = log -p --pretty=fuller --abbrev-commit
+    lgg = log --pretty=fuller --abbrev-commit --stat
 
     sns = show --name-status
 
@@ -14,6 +16,7 @@
     s = status -s
 
     # Show the diff between the latest commit and the current state
+    df = diff
     dom = diff origin/master
     domns = diff origin/master --name-status
 
@@ -22,6 +25,7 @@
 
     # Pull in remote changes for the current repository and all its submodules
     pl = !"git pull"
+    up = pull --rebase
 
     # Push
     pu = push
