@@ -44,6 +44,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'easymotion/vim-easymotion'
     Plugin 'mileszs/ack.vim'
     Plugin 'airblade/vim-gitgutter'
+    Plugin 'pignacio/vim-yapf-format'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -604,6 +605,8 @@ let g:NERDTreeWinPos = "right"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
+
+let g:yapf_format_yapf_location="/home/sima/venvs/a9engine/bin/yapf"
 
 set tags=tags
 set path=.
