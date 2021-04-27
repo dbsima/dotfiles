@@ -27,7 +27,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'othree/html5.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'w0rp/ale'
-    Plugin 'shougo/neocomplcache.vim'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -44,7 +43,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'easymotion/vim-easymotion'
     Plugin 'mileszs/ack.vim'
     Plugin 'airblade/vim-gitgutter'
-    Plugin 'pignacio/vim-yapf-format'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -374,49 +372,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=13  guibg=#d33682
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237 guibg=#073642
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" NeoComplCache
-
-" Enable `neocomplcache` by default
-" https://github.com/Shougo/neocomplcache.vim#installation
-let g:neocomplcache_enable_at_startup=1
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-"
-
-" Syntastic
-"let g:flake8_cmd="/home/sima/venv-vim/bin/flake8"
-" Installing Python 2.7 on Centos 6.5
-" https://gist.github.com/dalegaspi/dec44117fa5e7597a559
-" yum update # update yum
-" yum install centos-release-scl # install SCL
-" yum install python27 # install Python 2.7
-" scl enable python27 bash
-" pip2.7 install --user flake8 --upgrade
-" let g:syntastic_python_python_exec = '/opt/rh/python27/root/usr/bin/python'
-" let g:syntastic_python_flake8_exec='/opt/rh/python27/root/usr/bin/python'
-" let g:flake8_cmd="/home/shared/sima/.local/bin/flake8"
-"
-" " Inform Syntastic which checkers to use based on file types
-" " https://github.com/scrooloose/syntastic#3-faq
-" let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
-" let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
-" let g:syntastic_python_checkers = ['pep8']
-" let g:syntastic_css_checkers = ['csslint']
-" let g:syntastic_less_checkers = ['lessc']
-" let g:syntastic_typescript_checkers = ['eslint', 'tslint']
-" let g:syntastic_xml_checkers = [ 'xmllint' ]
-
-" let g:syntastic_python_flake8_post_args='--ignore=E402'
-" let g:syntastic_python_pep8_post_args='--ignore=E402'
-"
-" " Disable syntax checking by default
-" let g:syntastic_mode_map = {
-"     \ 'active_filetypes': ['python', 'html', 'javascript', 'css', 'less', 'typescript'],
-"     \ 'mode': 'active',
-"     \ 'passive_filetypes': []
-" \}
-
 " UltiSnips
 "
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
