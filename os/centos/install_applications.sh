@@ -9,10 +9,6 @@ declare -a PACKAGES=(
 
 )
 
-update_and_upgrade() {
-    execute "dnf update"
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -22,12 +18,8 @@ main() {
     printf "\n"
 
     for i in ${!PACKAGES[*]}; do
-        dnf "${PACKAGES[$i]}"
+        sudo dnf install "${PACKAGES[$i]}"
     done
-
-    printf "\n"
-
-    update_and_upgrade
 
 }
 
