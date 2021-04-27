@@ -19,7 +19,7 @@ enable_programmable_completion() {
             complete -o default -o nospace -F _git g
 
         fi
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$OS" == "ubuntu" || "$OS" == "centos" ]; then
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
             source /etc/bash_completion
         elif [ -f /etc/bash_completion.d/git ] && ! shopt -oq posix; then
@@ -39,7 +39,8 @@ get_os() {
 
     if [ "$OS_NAME" == "Darwin" ]; then
         os="osx"
-
+    elif [ "$OS_NAME" == "Linux" ] && [ -f "/etc/redhat-release" ]; then
+        os="centos"
     # Get Linux distribution
     # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
     elif [ "$OS_NAME" == "Linux" ] && \

@@ -54,6 +54,8 @@ get_os() {
 
     if [ "$OS_NAME" == "Darwin" ]; then
         os="osx"
+    elif [ "$OS_NAME" == "Linux" ] && [ -f "/etc/redhat-release" ]; then
+        os="centos"
     elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
         os="ubuntu"
     fi

@@ -10,6 +10,8 @@ main() {
 
     if [ "$OS" == "osx" ]; then
         ./os_x/install_applications.sh
+    elif [ "$OS" == "centos" ]; then
+        ./centos/install_applications.sh
     elif [ "$OS" == "ubuntu" ]; then
         ./ubuntu/install_applications.sh
     fi

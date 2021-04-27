@@ -16,7 +16,7 @@ enable_color_support() {
     if [ "$OS" == "osx" ]; then
         alias ls="ls -G" # or CLICOLOR=1
 
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$OS" == "ubuntu" || "$OS" == "centos" ]; then
         if [ -x /usr/bin/dircolors ]; then
 
             test -r ~/.dircolors \
@@ -78,7 +78,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    elif [ "$OS" == "ubuntu" ]; then
+    elif [ "$OS" == "ubuntu" || "$OS" == "centos" ]; then
 
         LS_COLORS=""
 
