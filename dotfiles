@@ -24,11 +24,12 @@ check_os() {
         else
             return 0
         fi
-
+    elif [ "$OS_NAME" == "Linux" ] && [ -f "/etc/redhat-release" ]; then
+        return 0
     # Check if the OS is Ubuntu
     else
         if [ "$OS_NAME" != "Linux" ] || [ ! -e "/etc/lsb-release" ]; then
-            printf "Sorry, this script is intended only for OS X and Ubuntu!"
+            printf "Sorry, this script is intended only for OS X and Ubuntu/CentOS!"
             return 1
         else
             return 0
@@ -189,8 +190,6 @@ extract() {
 main() {
 
     # Ensure the OS is OS X or Ubuntu
-    check_os || exit;
-
     # Ensure that the following actions are made
     # relative to the dotfiles directory root
     # http://mywiki.wooledge.org/BashFAQ/028
