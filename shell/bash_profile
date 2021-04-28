@@ -19,7 +19,7 @@ enable_programmable_completion() {
             complete -o default -o nospace -F _git g
 
         fi
-    elif [ "$OS" == "ubuntu" || "$OS" == "centos" ]; then
+    elif [ "$OS" == "ubuntu" ] || [ "$OS" == "centos" ]; then
         if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
             source /etc/bash_completion
         elif [ -f /etc/bash_completion.d/git ] && ! shopt -oq posix; then
