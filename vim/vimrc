@@ -43,6 +43,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'easymotion/vim-easymotion'
     Plugin 'mileszs/ack.vim'
     Plugin 'airblade/vim-gitgutter'
+    Plugin 'pignacio/vim-yapf-format'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
