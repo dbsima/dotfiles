@@ -208,3 +208,5 @@
 
     # push empty directory removals back to svn as directory deletes
     rmdir = true
+[pull]
+	rebase = true
