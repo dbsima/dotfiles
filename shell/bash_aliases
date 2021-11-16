@@ -193,4 +193,5 @@ ponyfyer() {
 }
 
 alias repl="ponyfyer"
+alias of="ssh sima@of.a9english.com"
 
