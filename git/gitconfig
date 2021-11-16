@@ -210,3 +210,5 @@
     rmdir = true
 [pull]
 	rebase = true
+[commit]
+	template = /home/gymglish/.git-commit-template.txt
