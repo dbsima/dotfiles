@@ -1,0 +1,67 @@
+/* *.jpg */
+/* *.jpeg */
+/* *.png */
+*.gif
+*.webp
+*.svg
+
+*.m4v
+*.mp4
+*.mp3
+*.wav
+*.ogg
+*.webm
+
+*.map
+*.mo
+*.pdf
+
+*.eml
+*.zip
+*.bz2
+
+*.pyc
+*.swp
+*.DS_Store
+
+a9npm/
+staticweb/
+
+webmedia/node_modules/
+webmedia/angular/backoffice-staff/dist
+webmedia/lib/js/jquery/jquery-ui-1.10.4.custom.min.js
+
+djangoweb/a9django/a9backoffice/angular/node_modules/
+djangoweb/a9django/a9backoffice/angular/build/
+djangoweb/a9django/a9backoffice/angular/dist/
+
+/* *.pem */
+/* *.cfg */
+/* *.conf */
+/* *.py */
+/* *.js */
+/* *.ts */
+/* *.html */
+/* *.po */
+/* *.css */
+/* *.less */
+/* *.tex */
+/* *.xml */
+/* *.sh */
+/* *.csv */
+/* *.ls */
+/* *.txt */
+/* *.md */
+/* *.rst */
+/* *.xls */
+/* *.xlf */
+
+node_modules/*
+sample-xml/dumps/content4test.pgsql
+sample-xml/dumps/content4test.mysql
+
+webmedia/es6/website/vtfc/anglais-vtfc-autocomplete-verbs.js
+webmedia/lib/a9-bootstrap/dist/css/bootstrap.min.css
+
+mailings/2017/20170628-mailing-rentree-orthographe.py
+mailings/newsletter/capsule_2013_06_27.py

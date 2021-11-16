@@ -14,6 +14,7 @@ declare -a FILES_TO_SYMLINK=(
     "shell/curlrc"
     "shell/inputrc"
     "shell/screenrc"
+    "shell/agignore"
 
     "git/gitattributes"
     "git/gitignore"
