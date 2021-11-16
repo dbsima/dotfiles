@@ -1,6 +1,6 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-source scl_source enable sclo-git25
+#source scl_source enable sclo-git25
 
 export PYTHONSTARTUP=~/.pythonrc
 
