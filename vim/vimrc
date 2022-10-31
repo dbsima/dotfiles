@@ -6,7 +6,7 @@
 " https://github.com/gmarik/Vundle.vim
 
 set nocompatible               " Don't make vim vi-compatibile
-filetype off                   " Disable file type detection
+filetype on                   " Disable file type detection
                                " (required by Vundle)
 
 " Set the runtime path to include Vundle
@@ -44,6 +44,8 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'mileszs/ack.vim'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'pignacio/vim-yapf-format'
+    Plugin 'alfredodeza/pytest.vim'
+    Plugin 'Yggdroot/indentLine'
     " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
@@ -492,7 +494,7 @@ if version >= 700
         endif
 
         " return the class and the function name
-        return className.punctuationHi.'.'.functionHi.substitute(getline(classFunctionLineNumber), '^[ ]*def \([^( ]*\).*', '\1', '')
+        return '::'.className.punctuationHi.'::'.functionHi.substitute(getline(classFunctionLineNumber), '^[ ]*def \([^( ]*\).*', '\1', '')
 
     endfunction
 
@@ -563,6 +565,8 @@ let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 
 let g:yapf_format_yapf_location="/home/sima/venvs/a9engine/bin/yapf"
+
+let g:pytest_executable = "/home/gymglish/venvs/a9engine/bin/pytest"
 
 set tags=tags
 set path=.
