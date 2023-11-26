@@ -36,6 +36,10 @@
 
 ## BASH
 
+.. replace new line with space from file
+
+tr '\n' ' ' < input_filename
+
 .. to ag and replace in multiple files:
 ``ag -rl s1 somedir/ | xargs sed -i 's/s1/s2/g'``
 
@@ -72,3 +76,4 @@
 .. navigate between split panes
 ``Cmd + [``
 ``Cmd + ]``
+

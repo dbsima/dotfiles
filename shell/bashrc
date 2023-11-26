@@ -1,7 +1,3 @@
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-#source scl_source enable sclo-git25
-
 export PYTHONSTARTUP=~/.pythonrc
 
 export NVM_DIR="$HOME/.nvm"
@@ -19,3 +15,4 @@ function mv() {
 }
 
 export PATH="$HOME/git-fuzzy/bin:$PATH"
+. "$HOME/.cargo/env"

@@ -109,3 +109,4 @@ export ANDROID_SDK=/Users/bogdan/android-sdk-macosx
 export ANDROID_SDK_ROOT=/Users/bogdan/android-sdk-macosx
 export PATH=/Users/bogdan/android-sdk-macosx/platform-tools:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
+. "$HOME/.cargo/env"
