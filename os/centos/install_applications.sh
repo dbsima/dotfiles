@@ -7,6 +7,7 @@ declare -a PACKAGES=(
     "lsof"
     "innotop"
     "ctags"
+    "hstr"
 
 )
 
