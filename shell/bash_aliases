@@ -197,3 +197,5 @@ alias repl="ponyfyer"
 alias of="ssh sima@of.a9english.com"
 
 alias gti="git"
+alias expo-ios-log="npx expo run:ios 2>&1 | ts '%Y-%m-%d %H:%M:%S'"
+

@@ -105,8 +105,18 @@ source ~/.bashrc
 # date and time of the last login, the message of the day, etc.)
 clear
 
-export ANDROID_SDK=/Users/bogdan/android-sdk-macosx
-export ANDROID_SDK_ROOT=/Users/bogdan/android-sdk-macosx
-export PATH=/Users/bogdan/android-sdk-macosx/platform-tools:$PATH
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/bogdan/.antigravity/antigravity/bin:$PATH"
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export PATH=$JAVA_HOME/bin:$PATH
+
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
