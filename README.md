@@ -28,6 +28,9 @@ The setup process will:
   [Ubuntu](os/ubuntu/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
+TODO manual:
+https://github.com/rtk-ai/rtk
+
 <table>
     <tbody>
         <tr>
