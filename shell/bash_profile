@@ -120,3 +120,10 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export PATH=$JAVA_HOME/bin:$PATH
 
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/bogdan/.antigravity-ide/antigravity-ide/bin:$PATH"
