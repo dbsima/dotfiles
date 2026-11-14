@@ -30,6 +30,7 @@ enable_programmable_completion() {
     fi
 
     if [[ -n "$autocomplete_plugin" ]]; then
+        mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh" "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
         zstyle '*:compinit' arguments -u
         source "$autocomplete_plugin"
         compinit() { : }
