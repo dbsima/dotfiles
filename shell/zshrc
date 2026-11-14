@@ -9,6 +9,9 @@
 
 enable_programmable_completion() {
 
+    local autocomplete_plugin=""
+    export ZSH_DISABLE_COMPFIX="true"
+
     if [[ "$OS" == "osx" ]] && command -v brew &>/dev/null; then
         local brew_prefix="$(brew --prefix)"
         if [[ -d "$brew_prefix/share/zsh/site-functions" ]]; then
@@ -17,15 +20,26 @@ enable_programmable_completion() {
         if [[ -d "$brew_prefix/share/zsh-completions" ]]; then
             fpath=("$brew_prefix/share/zsh-completions" $fpath)
         fi
+        if [[ -r "$brew_prefix/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]]; then
+            autocomplete_plugin="$brew_prefix/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+        fi
     fi
 
-    autoload -Uz compinit && compinit -u
+    if [[ -z "$autocomplete_plugin" ]] && [[ -r "$HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]]; then
+        autocomplete_plugin="$HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+    fi
+
+    if [[ -n "$autocomplete_plugin" ]]; then
+        zstyle '*:compinit' arguments -u
+        source "$autocomplete_plugin"
+        compinit() { : }
+    else
+        autoload -Uz compinit && compinit -u
+    fi
 
     # Case-insensitive completion and colored completion lists
     zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
     zstyle ':completion:*' list-colors ''
-
-    [ -r "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 
 }
 
@@ -86,6 +100,7 @@ _zshrc_main() {
 }
 
 _zshrc_main
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

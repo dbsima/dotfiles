@@ -7,6 +7,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
 declare -a HOMEBREW_FORMULAE=(
     "zsh-completions"
+    "zsh-autocomplete"
     "caskroom/cask/brew-cask"
     "git"
     "vim --override-system-vi"
