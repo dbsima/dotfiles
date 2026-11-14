@@ -1,0 +1,126 @@
+#!/usr/bin/env zsh
+
+# Load login environment/PATH setup for non-login interactive shells as well
+[ -r "$HOME/.zprofile" ] && source "$HOME/.zprofile"
+
+# ----------------------------------------------------------------------
+# | Helper Functions                                                   |
+# ----------------------------------------------------------------------
+
+enable_programmable_completion() {
+
+    if [[ "$OS" == "osx" ]] && command -v brew &>/dev/null; then
+        local brew_prefix="$(brew --prefix)"
+        if [[ -d "$brew_prefix/share/zsh/site-functions" ]]; then
+            fpath=("$brew_prefix/share/zsh/site-functions" $fpath)
+        fi
+        if [[ -d "$brew_prefix/share/zsh-completions" ]]; then
+            fpath=("$brew_prefix/share/zsh-completions" $fpath)
+        fi
+    fi
+
+    autoload -Uz compinit && compinit -u
+
+    # Case-insensitive completion and colored completion lists
+    zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+    zstyle ':completion:*' list-colors ''
+
+    [ -r "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+}
+
+get_os() {
+
+    local OS_NAME="$(uname -s)"
+    local os=""
+
+    if [[ "$OS_NAME" == "Darwin" ]]; then
+        os="osx"
+    elif [[ "$OS_NAME" == "Linux" ]] && [ -f "/etc/redhat-release" ]; then
+        os="centos"
+    # Get Linux distribution
+    # https://web.archive.org/web/20130929034731/http://linuxmafia.com/faq/Admin/release-files.html
+    elif [[ "$OS_NAME" == "Linux" ]] && \
+         [ -e "/etc/lsb-release" ]; then
+        os="ubuntu"
+    fi
+
+    printf "%s" "$os"
+}
+
+source_zsh_files() {
+
+    local file=""
+    local i=""
+    local -a FILES_TO_SOURCE=(
+        "zsh_aliases"
+        "zsh_exports"
+        "zsh_functions"
+        "zsh_options"
+        "zsh_prompt"
+        "zsh.local"  # for local settings that should
+                     # not be under version control
+    )
+
+    for i in "${FILES_TO_SOURCE[@]}"; do
+        file="$HOME/.${i}"
+        [ -r "$file" ] && source "$file"
+    done
+
+}
+
+# ----------------------------------------------------------------------
+# | Main                                                               |
+# ----------------------------------------------------------------------
+
+_zshrc_main() {
+
+    # The presence of the OS variable in this scope is important as
+    # the following functions rely on it (e.g. the sourced files use
+    # it to determine what to execute)
+    typeset -g OS="$(get_os)"
+
+    source_zsh_files
+    enable_programmable_completion
+
+}
+
+_zshrc_main
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Unset functions in order to not pollute the global space
+unset -f enable_programmable_completion
+unset -f get_os
+unset -f _zshrc_main
+unset -f source_zsh_files
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function mv() {
+    if [ "$#" -ne 1 ] || [ ! -f "$1" ]; then
+        command mv "$@"
+        return
+    fi
+
+    local newfilename="$1"
+    vared -p "" -c newfilename && command mv -v -- "$1" "$newfilename"
+}
+
+export PATH="$HOME/git-fuzzy/bin:$PATH"
+
+# Setup for qfc
+if [[ -s "$HOME/.qfc/bin/qfc.sh" ]]; then
+    source "$HOME/.qfc/bin/qfc.sh"
+    qfc_quick_command 'cd' '\C-b' 'cd $0'
+    qfc_quick_command 'vim' '\C-p' 'vim $0'
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+export PATH="$HOME/.local/bin:$PATH"

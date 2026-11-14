@@ -29,14 +29,14 @@ export NVM_DIR="'$NVM_DIR'"
         exit
     fi
 
-    # Install `npm` and add the necessary configs to `~/.bash.local`
+    # Install `npm` and add the necessary configs to `~/.zsh.local`
     if [ ! -d "$NVM_DIR" ]; then
 
         git clone https://github.com/creationix/nvm.git "$NVM_DIR" &> /dev/null
         print_result $? "nvm"
 
-        printf "%s" "$CONFIGS" >> "$HOME/.bash.local"
-        print_result $? "nvm (update ~/.bash.local)"
+        printf "%s" "$CONFIGS" >> "$HOME/.zsh.local"
+        print_result $? "nvm (update ~/.zsh.local)"
 
     fi
 

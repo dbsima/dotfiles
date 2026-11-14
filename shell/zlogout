@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# Clear console on exit
+if [[ "$SHLVL" == 1 ]] && [ -x "$(command -v clear)" ]; then
+    clear
+fi

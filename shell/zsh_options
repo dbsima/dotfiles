@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# Shell Options
+# https://zsh.sourceforge.io/Doc/Release/Options.html
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Autocorrect typos in commands
+setopt CORRECT
+
+# Include filenames beginning with a "." in filename expansion
+setopt GLOB_DOTS
+
+# Use extended pattern matching features
+setopt EXTENDED_GLOB
+
+# Append to the history file rather than overwriting it, and share across sessions
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# Ignore duplicate commands and commands starting with spaces in history
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+
+# Match filenames in a case-insensitive fashion when performing filename expansion
+setopt NO_CASE_GLOB
+
+# Disable beeping on error
+setopt NO_BEEP

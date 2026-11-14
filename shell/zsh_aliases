@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # ----------------------------------------------------------------------
 # | Navigation                                                         |
@@ -18,9 +18,9 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
     alias local-ip="ipconfig getifaddr en1"
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
     alias local-ip="ifconfig | \
                    grep 'inet addr' | \
                    grep -v '127.0.0.1' | \
@@ -46,7 +46,7 @@ fi
 
 # OS specific package managers
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
 
     # Homebrew
     # http://brew.sh/
@@ -61,7 +61,7 @@ if [ "$OS" == "osx" ]; then
                      brew cleanup"
     fi
 
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
 
     # Advanced Packaging Tool
 
@@ -76,12 +76,12 @@ fi
 
 # Update
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
     alias update="sudo softwareupdate --install --all && \
                   brewu && \
                   npmi -g npm && \
                   npmu -g"
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
     alias update="aptu && \
                   npmi -g npm && \
                   npmu -g"
@@ -93,7 +93,7 @@ fi
 
 alias :q="exit"
 alias c="clear"
-alias ch="history -c && > ~/.bash_history"
+alias ch=': > "${HISTFILE:-$HOME/.zsh_history}" && fc -p "${HISTFILE:-$HOME/.zsh_history}"'
 alias e="vim"
 alias v="vim"
 alias g="git"
@@ -107,9 +107,9 @@ alias rm="rm -rf"
 
 # Copy to clipboard
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
     alias cc="pbcopy"
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
     alias cc="xclip -selection clip"
 fi
 
@@ -117,13 +117,13 @@ fi
 
 # Empty Trash
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
 
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
 
     alias empty-trash="sudo rm -frv /Volumes/*/.Trashes && \
-                      sudo rm -frv ~/.Trash &&
+                      sudo rm -frv ~/.Trash && \
                       sudo rm -frv /private/var/log/asl/*.asl"
 fi
 
@@ -131,7 +131,7 @@ fi
 
 # Hide/Show files
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
 
     # Hide/Show desktop icons
     alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
@@ -141,7 +141,7 @@ if [ "$OS" == "osx" ]; then
     alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
 
     # Hide/Show desktop icons
     alias hide-desktop-icons="gsettings set org.gnome.desktop.background show-desktop-icons false"
@@ -153,7 +153,7 @@ fi
 
 # Lock screen
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
     alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 fi
 
@@ -161,22 +161,22 @@ fi
 
 # Open
 
-if [ "$OS" == "osx" ]; then
+if [[ "$OS" == "osx" ]]; then
     alias o="open"
-elif [ "$OS" == "ubuntu" ]; then
+elif [[ "$OS" == "ubuntu" ]]; then
     alias o="xdg-open"
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Silver search only in specific file types
-alias agpy="ag -G py"¬
-alias agxml="ag -G xml"¬
-alias agcss="ag -G css"¬
-alias agjs="ag -G js"¬
-alias aghtml="ag -G html"¬
-alias agjava="ag -G java"¬
-alias agcsv="ag -G csv"¬
+alias agpy="ag -G py"
+alias agxml="ag -G xml"
+alias agcss="ag -G css"
+alias agjs="ag -G js"
+alias aghtml="ag -G html"
+alias agjava="ag -G java"
+alias agcsv="ag -G csv"
 
 # Find
 alias fhere="find . -iname"
@@ -198,4 +198,3 @@ alias of="ssh sima@of.a9english.com"
 
 alias gti="git"
 alias expo-ios-log="npx expo run:ios 2>&1 | ts '%Y-%m-%d %H:%M:%S'"
-

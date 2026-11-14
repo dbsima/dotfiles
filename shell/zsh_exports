@@ -1,29 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # Shell Variables
-# http://linux.die.net/man/1/bash
+# https://zsh.sourceforge.io/Doc/Release/Parameters.html
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Ensure PATH entries are unique
+typeset -gU path PATH
 
 # Make vim the default editor
 export EDITOR="vim"
 
-# Ignore commands that start with spaces and duplicates
-export HISTCONTROL=ignoreboth:erasedups
-
-# Increase the maximum number of lines contained in the
-# history file (default value is 500)
-export HISTFILESIZE=10000
-
-# Don't add certain commands to the history file
-export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:qh:ll:ls -l:pwd:* --help"
-
-# Increase the maximum number of commands recorded in the
-# command history (default value is 500)
-export HISTSIZE=1000
+# History configuration
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTORY_IGNORE="(bg|fg|c|clear|history|exit|q|qh|ll|ls -l|pwd|* --help)"
 
 # Prefer US English and use UTF-8 encoding
-export LANG="en_US"
+export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 # Use custom `less` colors for man pages
@@ -36,14 +31,10 @@ export LESS_TERMCAP_me=$'\E[0m'      # end bold mode
 # Don't clear the screen after quitting a man page
 export MANPAGER="less -X"
 
-# Make new shells get the history lines from all previous
-# shells instead of the default "last window closed" history
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
 # Add auto-completion and a stored history file of commands to your Python
 # interactive interpreter. Requires Python 2.0+, readline. Autocomplete is
 # bound to the Esc key by default (you can change it - see readline docs).
 #
 # Store the file in ~/.pystartup, and set an environment variable to point
-# to it:  "export PYTHONSTARTUP=~/.pystartup" in bash.
+# to it:  "export PYTHONSTARTUP=~/.pystartup" in zsh.
 export PYTHONSTARTUP=~/.pystartup

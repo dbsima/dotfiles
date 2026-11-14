@@ -139,19 +139,19 @@ https://github.com/rtk-ai/rtk
 The dotfiles can be easily extended to suit additional local
 requirements by using the following files:
 
-#### `~/.bash.local`
+#### `~/.zsh.local`
 
-If the `~/.bash.local` file exist, it will be automatically sourced
-after all the other [bash related
+If the `~/.zsh.local` file exists, it will be automatically sourced
+after all the other [zsh related
 files](https://github.com/dbsima/dotfiles/tree/master/shell), thus,
 allowing its content to add to or overwrite the existing aliases,
 settings, PATH, etc.
 
-Here is a very simple example of a `~/.bash.local` file:
+Here is a very simple example of a `~/.zsh.local` file:
 
-```bash
+```zsh
 
-#!/bin/bash
+#!/usr/bin/env zsh
 
 declare -r GIT_USER_EMAIL="dbsima@example.com"
 declare -r GIT_USER_NAME="Cătălin Mariș"

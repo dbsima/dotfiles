@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # ----------------------------------------------------------------------
 # | Colors                                                             |
@@ -13,10 +13,14 @@ enable_color_support() {
         export TERM="xterm-256color"
     fi
 
-    if [ "$OS" == "osx" ]; then
-        alias ls="ls -G" # or CLICOLOR=1
+    if [[ "$OS" == "osx" ]]; then
+        export CLICOLOR=1
+        alias ls="ls -G"
+        alias egrep="egrep --color=auto"
+        alias fgrep="fgrep --color=auto"
+        alias grep="grep --color=auto"
 
-    elif [ "$OS" == "ubuntu" ] || [ "$OS" == "centos" ]; then
+    elif [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "centos" ]]; then
         if [ -x /usr/bin/dircolors ]; then
 
             test -r ~/.dircolors \
@@ -50,7 +54,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    if [ "$OS" == "osx" ]; then
+    if [[ "$OS" == "osx" ]]; then
 
         LSCOLORS=""
 
@@ -78,7 +82,7 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    elif [ "$OS" == "ubuntu" ] || [ "$OS" == "centos" ]; then
+    elif [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "centos" ]]; then
 
         LS_COLORS=""
 
@@ -113,39 +117,37 @@ get_git_repository_details() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if the current directory is in a Git repository
-    [ "$(git rev-parse &>/dev/null; printf $?)" -ne 0 ] && return
+    git rev-parse &>/dev/null || return
 
     # Check if in `.git/` directory (some of the following
     # checks don't make sense/won't work in the `.git` directory)
-    [ "$(git rev-parse --is-inside-git-dir)" == "true" ] && return
+    [[ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" == "true" ]] && return
 
     # Check for uncommitted changes in the index
-    if ! $(git diff --quiet --ignore-submodules --cached); then
-        tmp="$tmp+";
+    if ! git diff --quiet --ignore-submodules --cached; then
+        tmp="$tmp+"
     fi
 
     # Check for unstaged changes
-    if ! $(git diff-files --quiet --ignore-submodules --); then
-        tmp="$tmp!";
+    if ! git diff-files --quiet --ignore-submodules --; then
+        tmp="$tmp!"
     fi
 
     # Check for untracked files
     if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-        tmp="$tmp?";
+        tmp="$tmp?"
     fi
 
     # Check for stashed files
-    if $(git rev-parse --verify refs/stash &>/dev/null); then
-        tmp="$tmp$";
+    if git rev-parse --verify refs/stash &>/dev/null; then
+        tmp="$tmp\$"
     fi
 
     [ -n "$tmp" ] && tmp=" [$tmp]"
 
-
-    branchName="$( printf "$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
+    branchName="$( printf "%s" "$( git rev-parse --abbrev-ref HEAD 2> /dev/null \
         || git rev-parse --short HEAD 2> /dev/null \
         || printf " (unknown)" )" | tr -d "\n" )"
-
 
     printf "%s" "$1$branchName$tmp"
 
@@ -181,42 +183,43 @@ set_prompts() {
     else
 
         bold=""
-        reset="\e[0m"
+        reset=$'\e[0m'
 
-        black="\e[1;30m"
-        blue="\e[1;34m"
-        cyan="\e[1;36m"
-        green="\e[1;32m"
-        orange="\e[1;33m"
-        purple="\e[1;35m"
-        red="\e[1;31m"
-        white="\e[1;37m"
-        yellow="\e[1;33m"
+        black=$'\e[1;30m'
+        blue=$'\e[1;34m'
+        cyan=$'\e[1;36m'
+        green=$'\e[1;32m'
+        orange=$'\e[1;33m'
+        purple=$'\e[1;35m'
+        red=$'\e[1;31m'
+        white=$'\e[1;37m'
+        yellow=$'\e[1;33m'
 
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Prompt Statement variables
-    # http://ss64.com/bash/syntax-prompt.html
+    # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
+
+    setopt PROMPT_SUBST
 
     # ------------------------------------------------------------------
-    # | PS1 - Default interactive prompt                               |
+    # | PROMPT - Default interactive prompt                            |
     # ------------------------------------------------------------------
 
-    PS1="\[\033]0;\w\007\]"         # Terminal title (set to the
-                                    # current working directory)
-    PS1+="\[$bold\]"
-    PS1+="\[$orange\]\u"            # Username
-    PS1+="\[$white\]@"
-    PS1+="\[$yellow\]\h"            # Host
-    PS1+="\[$white\]: "
-    PS1+="\[$green\]\w"             # Working directory
-    PS1+="\$(get_git_repository_details \"$white on $cyan\")"
-    PS1+="\n"
-    PS1+="\[$reset$white\]\$ \[$reset\]"
+    PROMPT=$'%{\033]0;%~\007%}'     # Terminal title (set to current working directory)
+    PROMPT+="%{$bold%}"
+    PROMPT+="%{$orange%}%n"         # Username
+    PROMPT+="%{$white%}@"
+    PROMPT+="%{$yellow%}%m"         # Host
+    PROMPT+="%{$white%}: "
+    PROMPT+="%{$green%}%~"          # Working directory
+    PROMPT+="\$(get_git_repository_details \"%{$white%} on %{$cyan%}\")"
+    PROMPT+=$'\n'
+    PROMPT+="%{$reset$white%}\$ %{$reset%}"
 
-    export PS1
+    export PROMPT
 
     # ------------------------------------------------------------------
     # | PS2 - Continuation interactive prompt                          |
@@ -230,36 +233,7 @@ set_prompts() {
     # | PS4 - Debug prompt                                             |
     # ------------------------------------------------------------------
 
-    # e.g:
-    #
-    # The GNU `date` command has the `%N` interpreted sequence while
-    # other implementations don't (on OS X `gdate` can be used instead
-    # of the native `date` if the `coreutils` package was installed)
-    #
-    # local dateCmd=""
-    #
-    # if [ "$(date +%N)" != "N" ] || \
-    #    [ ! -x "$(command -v 'gdate')" ]; then
-    #    dateCmd="date +%s.%N"
-    # else
-    #    dateCmd="gdate +%s.%N"
-    # fi
-    #
-    # PS4="+$( tput cr && tput cuf 6 &&
-    #          printf "$yellow %s $green%6s $reset" "$($dateCmd)" "[$LINENO]" )"
-    #
-    # PS4 output:
-    #
-    #   ++    1357074705.875970000  [123] '[' 1 == 0 ']'
-    #   └──┬─┘└────┬───┘ └───┬───┘ └──┬─┘ └──────┬─────┘
-    #      │       │         │        │          │
-    #      │       │         │        │          └─ command
-    #      │       │         │        └─ line number
-    #      │       │         └─ nanoseconds
-    #      │       └─ seconds since 1970-01-01 00:00:00 UTC
-    #      └─ depth-level of the subshell
-
-    PS4="+$( tput cr && tput cuf 6 && printf "%s $reset" )"
+    PS4="+$( (tput cr && tput cuf 6) 2>/dev/null; printf "%s $reset" )"
 
     export PS4
 
@@ -269,18 +243,18 @@ set_prompts() {
 # | Main                                                               |
 # ----------------------------------------------------------------------
 
-main() {
+_zsh_prompt_main() {
     enable_color_support
     set_ls_colors
     set_prompts
 }
 
-main
+_zsh_prompt_main
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Unset functions in order to not pollute the global space
 unset -f enable_color_support
-unset -f main
+unset -f _zsh_prompt_main
 unset -f set_ls_colors
 unset -f set_prompts
